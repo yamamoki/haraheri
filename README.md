@@ -1,24 +1,32 @@
-# README
+# <腹が減っては戦はできぬ>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+料理を丁寧に作るだけの気力・体力がない時に作れるズボラ飯レシピを投稿するサイト開発。
 
-Things you may want to cover:
+### サイトテーマ
+<コミュニティサイト>
 
-* Ruby version
+### テーマを選んだ理由
+<誰でもしんどくなる時はあります。
+そんな時でもご飯を食べなければ元気は出ません。
+そんな時でも作れるレシピをすぐ確認できるサイトがあればと思いこのテーマにしました。>
 
-* System dependencies
+### ターゲットユーザ
+<自炊をする人、したい人>
 
-* Configuration
+### 主な利用シーン
+<料理をする元気がない時や時間がない時>
 
-* Database creation
+## 設計書
+<後日追加>
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
