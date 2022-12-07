@@ -15,7 +15,7 @@
   <header>
 
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-  <h5 class="my-0 mr-md-auto font-weight-normal">会社名</h5>
+  <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to "会社名", root_path %></h5>
 
 <% if user_signed_in? %>
   会員ログイン
@@ -25,12 +25,11 @@
 
 <% else %>
   <nav class="my-2 my-md-0 mr-md-3">
-    <a class="p-2 text-dark" href="#">特徴</a>
-    <a class="p-2 text-dark" href="#">エンタープライズ</a>
-    <a class="p-2 text-dark" href="#">サポート</a>
-    <a class="p-2 text-dark" href="#">価格</a>
+    <%= link_to "About", public_about_path, class: "p-2 text-dark" %>
+
+  <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-info" %>
+  <%= link_to "ユーザー登録（無料）", new_user_registration_path, class: "btn btn-outline-success" %>
   </nav>
-  <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary" %></li>
 <% end %>
 　</div>
   </header>
