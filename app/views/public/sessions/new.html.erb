@@ -1,19 +1,19 @@
-<body>
-<div class="d-flex align-items-center justify-content-center" style="height:600px;" >
-
+<body style="background-color:#FFF4E0;">
+<div class="d-flex align-items-center justify-content-center text-center " style="height:600px;" >
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <h2 class="h3 mb-3 font-weight-normal">ログインする</h2>
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
-  </div>
 
   <div class="field">
-    <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "form-control form-control-lg" %>
+  </div>
+
+  <div class="field mb-3">
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "form-control form-control-lg" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
+    <div class="field mb-3">
       <%= f.check_box :remember_me %>記憶する
     </div>
   <% end %>
@@ -22,5 +22,7 @@
     <%= f.submit "ログイン", class: "btn btn-outline-info" %>
   </div>
 <% end %>
+
+
 </div>
 </body>
