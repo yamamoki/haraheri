@@ -1,20 +1,20 @@
-<h2>Log in</h2>
+<body style="background-color:#FFF4E0;">
+<div class="d-flex align-items-center justify-content-center text-center " style="height:600px;" >
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<h2 class="h3 mb-3 font-weight-normal">管理人用ログイン</h2>
 
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "form-control form-control-lg" %>
+  </div>
+
+  <div class="field mb-3">
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "form-control form-control-lg" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="field mb-3">
+      <%= f.check_box :remember_me %>記憶する
     </div>
   <% end %>
 
@@ -24,3 +24,6 @@
 <% end %>
 
 <%= render "admin/shared/links" %>
+
+</div>
+</body>
