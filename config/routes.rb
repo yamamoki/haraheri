@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :lists, only: [:new, :index, :show, :edit]
   end
 
-  get "users" => "public/users#show", as: "user"
+  get "users/:id" => "public/users#show", as: "user"
   get "users/:id/edit" => "public/users#edit", as: "edit_user"
   patch "users/:id" => "public/users#update", as: "update_user"
 end
