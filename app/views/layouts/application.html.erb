@@ -19,6 +19,7 @@
 
 <% if user_signed_in? %>
   会員ログイン
+  <p>ようこそ、<%= current_user.name %>さん！</p>
   <%= link_to "マイページ", users_path(current_user), class: "header-button btn text-light" %>
   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 <% elsif admin_signed_in? %>
