@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
     user_path(@user.id)
   end
 
+
   protected
 
   def configure_permitted_parameters

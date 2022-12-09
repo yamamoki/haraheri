@@ -19,9 +19,7 @@
 
 <% if user_signed_in? %>
   会員ログイン
-  <%= link_to "マイページ", user_path %>
   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-
 <% elsif admin_signed_in? %>
   管理人ログイン
   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
