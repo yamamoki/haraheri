@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   scope module: :public do
     get 'users' =>'users#show'
     get "about"=>'homes#about'
-    resources :lists, only: [:new, :index, :show, :edit]
+    resources :lists, only: [:new, :index, :show, :edit, :create]
   end
 
   #get "users/:id" => "public/users#show", as: "user"
