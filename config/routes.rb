@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
-    get 'about'=>"homes#about"
+    get "about"=>'homes#about'
     resources :lists, only: [:new, :index, :show, :edit]
   end
 
