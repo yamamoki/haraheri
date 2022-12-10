@@ -2,3 +2,16 @@
 <p>Find me in app/views/public/users/show.html.erb</p>
  <%= link_to "新規投稿", new_list_path %>
  <%= link_to "投稿一覧", lists_path %>
+
+ <% @lists.each do |list| %>
+<div>
+  <%= link_to list_path(list.id) do %>
+    <h2>画像</h2>
+    <%= image_tag list.get_image, :size => '300x300' %>
+<% end %>
+  <p>材料</p>
+  <span><%= list.material %></span>
+  <p>本文</p>
+  <span><%= list.body %></span>
+</div>
+<% end %>
