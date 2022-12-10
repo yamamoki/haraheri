@@ -32,7 +32,7 @@ class Public::ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:title, :material, :body)
+    params.require(:list).permit(:title, :material, :body, :image)
   end
 
 end
