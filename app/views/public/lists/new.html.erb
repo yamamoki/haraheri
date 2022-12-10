@@ -2,7 +2,7 @@
 <p>Find me in app/views/public/lists/new.html.erb</p>
 
 <h1>新規投稿</h1>
-<%= form_with model: @list, url: '/lists', method: :post, local: true do |f| %>
+<%= form_with model: @list do |f| %>
   <h4>タイトル</h4>
   <%= f.text_field :title %>
 
