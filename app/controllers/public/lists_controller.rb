@@ -10,16 +10,23 @@ class Public::ListsController < ApplicationController
   def create
     @list = current_user.lists.build(list_params)
     if @list.save
-    redirect_to '/lists'
+    redirect_to list_path(@list.id)
     else
     render 'new'
     end
   end
 
   def show
+    @list = List.find(params[:id])
   end
 
   def edit
+  end
+
+  def destroy
+    @list = List.find(params[:id])
+    @list.destroy
+    redirect_to '/lists'
   end
 
   private
