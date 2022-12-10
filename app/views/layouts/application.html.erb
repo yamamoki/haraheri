@@ -19,16 +19,16 @@
 
 <% if user_signed_in? %>
   会員ログイン
-  <%= link_to "マイページ", user_path %>
+  <p>ようこそ、<%= current_user.name %>さん！</p>
+  <%= link_to "マイページ", users_path(current_user), class: "header-button btn text-light" %>
   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-
 <% elsif admin_signed_in? %>
   管理人ログイン
   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
 
 <% else %>
   <nav class="my-2 my-md-0 mr-md-3">
-  <%= link_to "About", public_about_path, class: "p-2 text-dark" %>
+  <%= link_to "About", about_path, class: "p-2 text-dark" %>
 
   <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-info" %>
   <%= link_to "ユーザー登録（無料）", new_user_registration_path, class: "btn btn-outline-success" %>
