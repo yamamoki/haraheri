@@ -1,2 +1,16 @@
 <h1>Public::Lists#show</h1>
 <p>Find me in app/views/public/lists/show.html.erb</p>
+
+  <p>タイトル</p>
+  <span><%= @list.title %></span>
+
+  <h2>画像</h2>
+  <%= image_tag @list.get_image, :size => '300x300' %>
+
+  <p>材料</p>
+  <span><%= @list.material %></span>
+  <p>本文</p>
+  <span><%= @list.body %></span>
+
+  <%= link_to "削除", list_path(@list), method: :delete %>
+

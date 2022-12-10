@@ -4,6 +4,7 @@ class CreateLists < ActiveRecord::Migration[6.1]
       t.integer :user_id
       t.integer :genre_id
       t.string :title
+      t.text :material
       t.text :body
       t.timestamps
     end

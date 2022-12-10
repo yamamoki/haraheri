@@ -18,12 +18,15 @@ Rails.application.routes.draw do
     resources :lists, only: [:index, :show]
   end
 
-  namespace :public do
-    get 'about'=>"homes#about"
-    resources :lists, only: [:new, :index, :show, :edit]
+  scope module: :public do
+    get 'users' =>'users#show'
+    get "users/:id/edit" => "users#edit"
+    patch "users/:id" => "users#update"
+    get "about"=>'homes#about'
+    resources :lists, only: [:new, :index, :show, :edit, :create, :destroy]
   end
 
-  get "users/:id" => "public/users#show", as: "user"
-  get "users/:id/edit" => "public/users#edit", as: "edit_user"
-  patch "users/:id" => "public/users#update", as: "update_user"
+  #get "users/:id" => "public/users#show", as: "user"
+  #get "users/:id/edit" => "public/users#edit", as: "edit_user"
+  #patch "users/:id" => "public/users#update", as: "update_user"
 end
