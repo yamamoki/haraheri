@@ -3,9 +3,18 @@
 
   <p>タイトル</p>
   <span><%= @list.title %></span>
+
+  <h2>画像</h2>
+<% if @list.image.attached? %>
+  <%= image_tag @list.image, size: "300x300" %>
+<% else %>
+  <%= image_tag 'no_image', size: "300x300" %>
+<% end %>
+
   <p>材料</p>
   <span><%= @list.material %></span>
   <p>本文</p>
   <span><%= @list.body %></span>
+
   <%= link_to "削除", list_path(@list), method: :delete %>
 
