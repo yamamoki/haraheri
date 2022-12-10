@@ -1,2 +1,11 @@
 <h1>Public::Lists#show</h1>
 <p>Find me in app/views/public/lists/show.html.erb</p>
+
+  <p>タイトル</p>
+  <span><%= @list.title %></span>
+  <p>材料</p>
+  <span><%= @list.material %></span>
+  <p>本文</p>
+  <span><%= @list.body %></span>
+  <%= link_to "削除", list_path(@list), method: :delete %>
+
