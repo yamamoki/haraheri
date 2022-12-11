@@ -1,5 +1,5 @@
-  ja:
-    enums:
+ja:
+   enums:
       list:
         draft:
           release: "公開"

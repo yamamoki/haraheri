@@ -12,10 +12,12 @@
 
   <p>画像</p>
   <%= image_tag list.get_image, :size => '200x200' %>
+
+
+  <%= list.draft_i18n %>
+  <%= link_to "削除", list_path(list), method: :delete %>
+
   
-  <!--日本語に変更する-->
-  <%= list.draft %>
- 
- 
+  
 
 <% end %>
