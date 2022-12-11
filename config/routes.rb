@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     get "users/:id/edit" => "users#edit"
     patch "users/:id" => "users#update"
     get "about"=>'homes#about'
-    resources :lists, only: [:new, :index, :show, :edit, :create, :destroy]
+    resources :lists, only: [:new, :index, :show, :edit, :create, :destroy, :update]
   end
 
   #get "users/:id" => "public/users#show", as: "user"
