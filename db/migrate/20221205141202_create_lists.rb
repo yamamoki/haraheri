@@ -7,7 +7,6 @@ class CreateLists < ActiveRecord::Migration[6.1]
       t.text :material
       t.text :body
       t.integer :draft
-      t.timestamps
     end
   end
 end
