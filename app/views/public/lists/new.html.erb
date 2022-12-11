@@ -14,6 +14,13 @@
 
   <h4>画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
+  <%= f.select :draft,[["公開", "release"],["下書き", "draft"]] %><br>
+
+  <%= f.radio_button :draft, "release" %>
+　<%= f.label :draft_draft, "公開" %>
+
+  <%= f.radio_button :draft, "draft" %>
+  <%= f.label :draft_release, "下書き" %>
 
   <%= f.submit '投稿' %>
 <% end %>
