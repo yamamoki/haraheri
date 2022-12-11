@@ -1,7 +1,6 @@
 class Public::UsersController < ApplicationController
   def show
-    @user = current_user
-    @lists = @user.lists
+    @lists = List.all.where(draft: 'release')
   end
 
   def edit
