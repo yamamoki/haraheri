@@ -1,6 +1,7 @@
 class Public::ListsController < ApplicationController
   def index
-    @lists = List.all
+    @user = current_user
+    @lists = @user.lists
   end
 
   def new
@@ -24,11 +25,11 @@ class Public::ListsController < ApplicationController
   def edit
     @list = List.find(params[:id])
   end
-  
+
   def update
     list = List.find(params[:id])
     list.update(list_params)
-    redirect_to list_path(list.id)  
+    redirect_to list_path(list.id)
   end
 
 
@@ -41,7 +42,7 @@ class Public::ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:title, :material, :body, :image)
+    params.require(:list).permit(:title, :material, :body, :image, :draft)
   end
 
 end

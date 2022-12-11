@@ -5,6 +5,10 @@ class List < ApplicationRecord
  belongs_to :user, optional: true
  belongs_to :genre, optional: true
 
+
+ enum draft: { release: 0, draft: 1 }
+
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.png')

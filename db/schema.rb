@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(version: 2022_12_10_072859) do
     t.string "title"
     t.text "material"
     t.text "body"
+    t.integer "draft"
+  
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
