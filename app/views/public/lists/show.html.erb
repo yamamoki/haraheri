@@ -12,5 +12,6 @@
   <p>本文</p>
   <span><%= @list.body %></span>
 
+  <%= link_to "編集", edit_list_path(@list) %>
   <%= link_to "削除", list_path(@list), method: :delete %>
 
