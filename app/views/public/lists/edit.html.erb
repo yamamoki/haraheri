@@ -16,6 +16,7 @@
   <h4>画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
   
+  <%= f.select :draft,[["公開", "release"],["下書き", "draft"]] %><br>
   <%= f.submit '保存' %>
   
 <% end %>
