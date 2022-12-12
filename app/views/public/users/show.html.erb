@@ -16,7 +16,9 @@
   <h2>画像
   <%= image_tag list.get_image, :size => '300x300' %></h2>
   <p>タイトル
-  <%= list.title %></p>
+  <%= link_to list.title, list_path(list.id)  %></p>
   <p><%= list.draft_i18n %></p>
+  <p><%= link_to "#{list.post_comments.count} コメント", list_path(list.id) %></p>
+  <%= link_to "編集", edit_list_path(list) %>
 </div>
 <% end %>
