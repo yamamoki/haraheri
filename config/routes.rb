@@ -20,12 +20,12 @@ Rails.application.routes.draw do
 
   scope module: :public do
     get 'users' =>'users#show'
-    get "users/:id/edit" => "users#edit"
-    patch "users/:id" => "users#update"
+    get "users/edit" => "users#edit"
+    patch "users" => "users#update"
     get "about"=>'homes#about'
     resources :lists, only: [:new, :index, :show, :edit, :create, :destroy, :update]
   end
-  
+
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end

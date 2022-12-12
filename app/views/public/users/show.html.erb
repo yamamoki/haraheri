@@ -4,6 +4,8 @@
 
 <p>ユーザーネーム
 <%= @user.name %></p>
+<%= @user.email %></p>
+<%= link_to "プロフィール編集", users_edit_path %>
 
  <% @lists.each do |list| %>
 <div>
