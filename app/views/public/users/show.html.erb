@@ -18,5 +18,6 @@
   <p>タイトル
   <%= list.title %></p>
   <p><%= list.draft_i18n %></p>
+  <%= link_to "編集", edit_list_path(list) %>
 </div>
 <% end %>
