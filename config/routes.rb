@@ -25,7 +25,9 @@ Rails.application.routes.draw do
     patch "users" => "users#update"
     get "users/unsubscribed"=>'users#check', as: 'check'
     patch "users/withdrawal"=>'users#withdrawal', as: 'withdrawal'
-    resources :lists
+    resources :lists do
+      resources :post_comments, only: [:create, :destroy]
+    end
   end
 
   devise_scope :user do
