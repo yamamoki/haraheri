@@ -1,9 +1,11 @@
 class Public::UsersController < ApplicationController
   def show
-    @lists = List.all.where(draft: 'release')
+    @user = current_user
+    @lists = @user.lists.page(params[:page])
   end
 
   def edit
+    
   end
 
   def check

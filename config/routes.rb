@@ -25,8 +25,8 @@ Rails.application.routes.draw do
     get "about"=>'homes#about'
     resources :lists, only: [:new, :index, :show, :edit, :create, :destroy, :update]
   end
-
-  #get "users/:id" => "public/users#show", as: "user"
-  #get "users/:id/edit" => "public/users#edit", as: "edit_user"
-  #patch "users/:id" => "public/users#update", as: "update_user"
+  
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
 end
