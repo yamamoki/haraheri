@@ -15,8 +15,22 @@
   <p>本文</p>
   <span><%= @list.body %></span>
 
-
-
   <%= link_to "編集", edit_list_path(@list) %>
   <%= link_to "削除", list_path(@list), method: :delete %>
 
+<div>
+  <p>コメント件数：<%= @list.post_comments.count %></p>
+  <% @list.post_comments.each do |post_comment| %>
+    <%= post_comment.user.name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+    <% if post_comment.user == current_user %>
+      <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@list, @post_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
