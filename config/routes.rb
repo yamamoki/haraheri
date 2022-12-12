@@ -19,10 +19,12 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
+    get "about"=>'homes#about'
     get 'users' =>'users#show'
     get "users/edit" => "users#edit"
     patch "users" => "users#update"
-    get "about"=>'homes#about'
+    get "users/unsubscribed"=>'users#check', as: 'check'
+    patch "users/withdrawal"=>'users#withdrawal', as: 'withdrawal'
     resources :lists, only: [:new, :index, :show, :edit, :create, :destroy, :update]
   end
 
