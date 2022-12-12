@@ -1,2 +1,18 @@
 <h1>Public::Users#check</h1>
 <p>Find me in app/views/public/users/check.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class='mx-auto'>
+      <h3 class="text-center mt-2 mb-2">本当に退会しますか？</h3>
+      <p class="text-center">
+        退会すると、会員登録情報や</br>
+        これまでのお気に入り等が閲覧できなくなります。</br>
+        退会する場合は、 「退会する」 をクリックしてください。</br>
+      </p>
+      <div class="text-center">
+        <%= link_to "退会しない", users_path(@user), class: 'btn btn-success btn-primary' %>
+        <%= link_to "退会する", withdrawal_path(@user), method: :patch, class: 'btn btn-danger btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>

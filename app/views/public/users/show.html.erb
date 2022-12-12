@@ -1,17 +1,22 @@
 <h1>Public::Users#show</h1>
 <p>Find me in app/views/public/users/show.html.erb</p>
  <%= link_to "新規投稿", new_list_path %>
- <%= link_to "投稿一覧", lists_path %>
+
+<p>ユーザーネーム
+<%= @user.name %></p>
+<%= @user.email %></p>
+<%= link_to "プロフィール編集", users_edit_path %>
+<% if user_signed_in? && @user.id == current_user.id %>
+		<%= link_to "退会", check_path, method: :get, class: "btn btn-outline-danger" %>
+<% end %>
+
 
  <% @lists.each do |list| %>
 <div>
-  <%= link_to list_path(list.id) do %>
-    <h2>画像</h2>
-    <%= image_tag list.get_image, :size => '300x300' %>
-<% end %>
-  <p>材料</p>
-  <span><%= list.material %></span>
-  <p>本文</p>
-  <span><%= list.body %></span>
+  <h2>画像
+  <%= image_tag list.get_image, :size => '300x300' %></h2>
+  <p>タイトル
+  <%= list.title %></p>
+  <p><%= list.draft_i18n %></p>
 </div>
 <% end %>

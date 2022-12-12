@@ -1,7 +1,6 @@
 class Public::ListsController < ApplicationController
   def index
-    @user = current_user
-    @lists = @user.lists
+    @lists = List.where(draft: 'release').page(params[:page])
   end
 
   def new
