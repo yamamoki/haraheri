@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     patch "users/withdrawal"=>'users#withdrawal', as: 'withdrawal'
     resources :lists do
       resources :post_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
   end
 
