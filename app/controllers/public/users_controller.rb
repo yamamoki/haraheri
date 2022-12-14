@@ -25,7 +25,7 @@ class Public::UsersController < ApplicationController
     @user.update_columns(is_deleted: true)
     if @user.is_deleted == true
       sign_out current_user
-   end
+    end
     redirect_to root_path
   end
 

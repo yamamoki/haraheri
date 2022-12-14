@@ -2,3 +2,33 @@
 <p>Find me in app/views/admin/users/show.html.erb</p>
 管理
 会員詳細
+
+
+
+<%= @user.name %>さんの会員詳細
+<table class="table table-borderless">
+  <tr>
+    <th>会員ID</th>
+    <td><%= @user.id %></td>
+  </tr>
+  <tr>
+  　<th>氏名</th>
+    <td>
+      <%= @user.name %>
+  　</td>
+  </tr>
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <th>会員ステータス</th>
+      <td><%= form_with model: @user, url: admin_user_path(@user), local: true do |f| %>
+      <%= f.radio_button :is_deleted, false %>有効
+      <%= f.radio_button :is_deleted, true %>退会
+      <%= f.submit "変更を保存", class: "btn btn-success" %></tb>
+  </tr>
+</table>
+
+
+<% end %>
