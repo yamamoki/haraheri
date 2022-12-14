@@ -14,9 +14,10 @@
   <span><%= @list.material %></span>
   <p>本文</p>
   <span><%= @list.body %></span>
-
+ <% if @list.user == current_user %>
   <%= link_to "編集", edit_list_path(@list) %>
   <%= link_to "削除", list_path(@list), method: :delete %>
+ <% end %>
 
 <div>
   <p>コメント件数：<%= @list.post_comments.count %></p>
