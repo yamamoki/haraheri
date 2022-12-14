@@ -2,15 +2,15 @@
 <p>Find me in app/views/admin/users/index.html.erb</p>
 会員一覧
 
-<table class="table">
-        <thead>
-          <tr class="bg-light">
-            <th>会員ID</th>
-            <th>氏名</th>
-            <th>メールアドレス</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
+  <table class="table">
+    <thead>
+      <tr class="bg-light">
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
 <% @users.each do |users| %>
   <tr>
     <td><%= users.id %></td>
@@ -27,6 +27,6 @@
     <% end %>
   </tr>
 <% end %>
-</table>
+  </table>
 
 <%= paginate @user %>
