@@ -13,5 +13,15 @@
   <p>画像</p>
   <%= image_tag list.get_image, :size => '200x200' %>
 
+<%= form_tag lists_path, method: :get, class: 'boards__searchForm' do %>
+  <%= select_tag :tag_id,
+       options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+       {
+         prompt: 'タグで絞り込み検索',
+         onchange: 'submit(this.form);'
+       }
+  %>
+<% end %>
+
 <% end %>
 <%= paginate @lists %>
