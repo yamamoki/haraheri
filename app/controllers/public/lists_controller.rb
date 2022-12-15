@@ -38,10 +38,12 @@ class Public::ListsController < ApplicationController
     redirect_to list_path(list)
   end
 
+  
+
   private
 
   def list_params
-    params.require(:list).permit(:title, :material, :body, :image, :draft)
+    params.require(:list).permit(:title, :material, :body, :image, :draft, tag_ids: [])
   end
 
 end
