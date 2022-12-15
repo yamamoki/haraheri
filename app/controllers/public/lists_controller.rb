@@ -1,6 +1,14 @@
 class Public::ListsController < ApplicationController
   def index
-    @lists = List.where(draft: 'release').page(params[:page])
+    @lists = List.where(draft: 'release')
+    @lists = @lists.page(params[:page])
+    if params[:tag_ids]
+      @lists = []
+      params[:tag_ids].each do |key, value|
+        @lists += Tag.find_by(name: key).lists if value == "1"
+      end
+      @lists.uniq!
+    end
   end
 
   def new
@@ -38,7 +46,7 @@ class Public::ListsController < ApplicationController
     redirect_to list_path(list)
   end
 
-  
+
 
   private
 
