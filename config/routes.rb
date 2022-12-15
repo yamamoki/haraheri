@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :users, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :edit]
-    resources :lists, only: [:index, :show]
+    resources :lists, only: [:index, :show] do
+      resources :post_comments, only: [:destroy]
+    end
   end
 
   scope module: :public do
