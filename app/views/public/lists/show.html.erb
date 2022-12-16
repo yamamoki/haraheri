@@ -7,6 +7,11 @@
   <p>タイトル</p>
   <span><%= @list.title %></span>
 
+  <p>タグ</p>
+  <% @list.tags.each do |tag| %>
+    <%= tag.name %>
+  <% end %>
+
   <h2>画像</h2>
   <%= image_tag @list.get_image, :size => '300x300' %>
 
