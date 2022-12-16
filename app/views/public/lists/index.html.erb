@@ -1,29 +1,31 @@
-<h1>Public::Lists#index</h1>
-<p>Find me in app/views/public/lists/index.html.erb</p>
 
 <%= form_tag({controller:"lists",action:"index"},method: :get)do %>
-<%= text_field_tag :search %>
-<%= select_tag :tag_id,
-options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-{ prompt: '全て',}%>
-<%= submit_tag '検索する' %>
+  <%= text_field_tag :search %>
+  <%= select_tag :tag_id,
+  options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+  { prompt: '全て',}%>
+  <%= submit_tag '検索する' %>
 <% end %>
 
 <h1>投稿一覧</h1>
+<div class="album py-5">
+  <div class="container">
+    <div class="row">
+    <% @lists.each do |list| %>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+        <img class="card-img-top"><%= image_tag list.get_image %>
+          <div class="card-body">
+          <h5 class="card-title">タイトル：<%= link_to list.title, list_path(list.id) %></h5>
+          <h5 class="card-name">投稿者：<%= list.user.name %></h5>
+          <h5 class="card-tag"><% list.tags.each do |tag| %>
+          #<%= tag.name %>
+          <% end %></h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
 
-<% @lists.each do |list| %>
-  <p>タイトル</p>
-  <%= link_to list.title, list_path(list.id)  %>
-  <p>タグ</p>
-  <% list.tags.each do |tag| %>
-    <%= tag.name %>
-  <% end %>
-
-  <p>ユーザーネーム</p>
-  <%= list.user.name %>
-
-  <p>画像</p>
-  <%= image_tag list.get_image, :size => '200x200' %>
-
-
-<% end %>
