@@ -1,3 +1,4 @@
+
 <%= form_tag({controller:"lists",action:"index"},method: :get)do %>
   <%= text_field_tag :search %>
   <%= select_tag :tag_id,
@@ -7,7 +8,7 @@
 <% end %>
 
 <h1>投稿一覧</h1>
-<div class="album py-5 bg-light">
+<div class="album py-5">
   <div class="container">
     <div class="row">
     <% @lists.each do |list| %>
@@ -27,3 +28,4 @@
     </div>
   </div>
 </div>
+

@@ -10,11 +10,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
 
-  <header>
 
-  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <header style="background-color:#73D0C2;">
+
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
   <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to "会社名", root_path %></h5>
 
 <% if user_signed_in? %>
@@ -26,7 +26,6 @@
 <% elsif admin_signed_in? %>
   <%= link_to "管理トップ", admin_root_path %>
   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-
 <% else %>
   <nav class="my-2 my-md-0 mr-md-3">
   <%= link_to "About", about_path, class: "p-2 text-dark" %>
@@ -40,5 +39,6 @@
   </header>
 
     <%= yield %>
+  <body style="background-color:#FFF4E0;">
   </body>
 </html>
