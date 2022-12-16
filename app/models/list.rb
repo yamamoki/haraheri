@@ -3,6 +3,9 @@ class List < ApplicationRecord
  has_many :post_comments, dependent: :destroy
  has_many :favorites, dependent: :destroy
 
+ has_many :post_tags, dependent: :destroy
+ has_many :tags, through: :post_tags, dependent: :destroy
+
  belongs_to :user, optional: true
  belongs_to :genre, optional: true
 
@@ -20,4 +23,7 @@ class List < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+  def self.search(keyword)
+  where(["title like? OR material like? OR body like?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
+  end
 end
