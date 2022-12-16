@@ -3,11 +3,11 @@ class Public::ListsController < ApplicationController
    if params[:search].blank? && params[:tag_id].blank?
       @lists= List.all
     elsif params[:search].present? && params[:tag_id].blank?
-      @lists= List.where("title LIKE ?",'%' + params[:search] + '%')
+      @lists= List.where("title LIKE ? or material LIKE ? or body LIKE ? ",'%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%')
     elsif params[:search].blank? && params[:tag_id].present?
       @lists = Tag.find(params[:tag_id]).lists
     else
-      @lists = Tag.find(params[:tag_id]).lists.where("title LIKE ? ",'%' + params[:search] + '%')
+      @lists = Tag.find(params[:tag_id]).lists.where("title LIKE ? or material LIKE ? or body LIKE ? ",'%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%')
     end
   end
 
