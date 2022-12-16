@@ -1,7 +1,7 @@
 class Public::ListsController < ApplicationController
   def index
-   if params[:search].blank? && params[:tag_id].blank?
-      @lists= List.all
+    if params[:search].blank? && params[:tag_id].blank?
+      @lists= List.where(draft: 'release').page(params[:page])
     elsif params[:search].present? && params[:tag_id].blank?
       @lists= List.where("title LIKE ? or material LIKE ? or body LIKE ? ",'%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%')
     elsif params[:search].blank? && params[:tag_id].present?
