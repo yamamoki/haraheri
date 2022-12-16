@@ -22,4 +22,4 @@ users = User.create!(
     {email: 'aki@test.com', name: 'あき', password: 'aaaaaa' },
     {email: 'huyu@test.com', name: 'ふゆ', password: 'hhhhhh' }
   ]
-)
+ )
