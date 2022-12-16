@@ -15,11 +15,9 @@ Tag.create([
   { name: 'タグ5' }
 ])
 
-users = User.create!(
-  [
+ users = User.create!([
     {email: 'haru@test.com', name: 'はる', password: 'hhhhhh' },
     {email: 'natu@test.com', name: 'なつ', password: 'nnnnnn' },
     {email: 'aki@test.com', name: 'あき', password: 'aaaaaa' },
     {email: 'huyu@test.com', name: 'ふゆ', password: 'hhhhhh' }
-  ]
- )
+ ])
