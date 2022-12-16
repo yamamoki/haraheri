@@ -1,6 +1,14 @@
 class Public::ListsController < ApplicationController
   def index
-    @lists = List.where(draft: 'release').page(params[:page])
+   if params[:search].blank? && params[:tag_id].blank?
+      @lists= List.all
+    elsif params[:search].present? && params[:tag_id].blank?
+      @lists= List.where("title LIKE ? or material LIKE ? or body LIKE ? ",'%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%')
+    elsif params[:search].blank? && params[:tag_id].present?
+      @lists = Tag.find(params[:tag_id]).lists
+    else
+      @lists = Tag.find(params[:tag_id]).lists.where("title LIKE ? or material LIKE ? or body LIKE ? ",'%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%')
+    end
   end
 
   def new
@@ -38,10 +46,11 @@ class Public::ListsController < ApplicationController
     redirect_to list_path(list)
   end
 
+
   private
 
   def list_params
-    params.require(:list).permit(:title, :material, :body, :image, :draft)
+    params.require(:list).permit(:title, :material, :body, :image, :draft, tag_ids: [])
   end
 
 end
