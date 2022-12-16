@@ -46,7 +46,11 @@ class Public::ListsController < ApplicationController
     redirect_to list_path(list)
   end
 
-
+  def search
+    @lists = List.search(params[:keyword])
+    @keyword = params[:keyword]
+    render 'index'
+  end
 
   private
 
