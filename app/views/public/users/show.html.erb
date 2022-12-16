@@ -2,30 +2,32 @@
 <p>Find me in app/views/public/users/show.html.erb</p>
  <%= link_to "新規投稿", new_list_path %>
 
-<p>ユーザーネーム
-<%= @user.name %></p>
-<%= @user.email %></p>
 <%= link_to "プロフィール編集", users_edit_path %>
 <%= link_to"お気に入り一覧",list_favorites_path(@user) %>
 <% if user_signed_in? && @user.id == current_user.id %>
 		<%= link_to "退会", check_path, method: :get, class: "btn btn-outline-danger" %>
 <% end %>
 
-
- <% @lists.each do |list| %>
-<div>
-  <h2>画像
-  <%= image_tag list.get_image, :size => '300x300' %></h2>
-  <p>タイトル
-  <%= link_to list.title, list_path(list.id)  %></p>
-  <p>タグ
-  <% list.tags.each do |tag| %>
-    <%= tag.name %>
-  <% end %></p>
-  <p><%= list.draft_i18n %></p>
-  <p><%= link_to "#{list.post_comments.count} コメント", list_path(list.id) %></p>
-  <%= link_to "編集", edit_list_path(list) %>
+<div class="album py-5">
+  <div class="container">
+    <div class="row">
+    <% @lists.each do |list| %>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+         <img class="card-img-top"><%= image_tag list.get_image %>
+          <div class="card-body">
+          <h5>タイトル：<%= link_to list.title, list_path(list.id) %></h5>
+          <h6><% list.tags.each do |tag| %>#<%= tag.name %><% end %></h6>
+          <h6>現在、<%= list.draft_i18n %>中です。</h6>
+          <h6><%= list.post_comments.count %> コメント</h6>
+          <h6 class="text-right"><%= link_to "編集", edit_list_path(list) %></h6>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
 </div>
-<% end %>
+
 
 <%= paginate @lists %>
