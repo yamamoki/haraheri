@@ -5,19 +5,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-
-
   <header style="background-color:#9DDCDC;">
-
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
   <h5 class="my-0 mr-md-auto font-weight-normal "><%= link_to "会社名", root_path %></h5>
-
-
 
 <% if user_signed_in? %>
   <nav class="my-2 my-md-0 mr-md-3">

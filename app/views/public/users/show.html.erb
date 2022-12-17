@@ -7,6 +7,7 @@
 <% if user_signed_in? && @user.id == current_user.id %>
 		<%= link_to "退会", check_path, method: :get, class: "btn btn-outline-danger" %>
 <% end %>
+投稿数<%= current_user.lists.count %>
 
 <div class="album py-5">
   <div class="container">
