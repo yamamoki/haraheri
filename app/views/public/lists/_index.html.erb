@@ -1,6 +1,7 @@
 <% @lists.each do |list| %>
       <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
+          
         <img class="card-img-top"><%= image_tag list.get_image %>
           <div class="card-body">
           <h5 class="card-title">タイトル：<%= link_to list.title, list_path(list.id) %></h5>
