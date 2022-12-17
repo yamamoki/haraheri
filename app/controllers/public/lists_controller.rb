@@ -9,7 +9,6 @@ class Public::ListsController < ApplicationController
     else
       @lists = Tag.find(params[:tag_id]).lists.where("title LIKE ? or material LIKE ? or body LIKE ? ",'%' + params[:search] + '%','%' + params[:search] + '%','%' + params[:search] + '%').page(params[:page]).per(6)
     end
-    @lists = List.page(params[:page]).order('id DESC')
   end
 
   def new

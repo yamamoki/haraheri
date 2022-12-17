@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = current_user
-    @lists = @user.lists.page(params[:page])
+    @lists = @user.lists.page(params[:page]).order('id DESC').per(6)
   end
 
   def edit
