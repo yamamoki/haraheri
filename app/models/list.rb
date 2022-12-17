@@ -9,6 +9,12 @@ class List < ApplicationRecord
  belongs_to :user, optional: true
  belongs_to :genre, optional: true
 
+ validates :title, presence: true
+ validates :material, presence: true
+ validates :body, presence: true
+ validates :tags, presence: true
+ validates :draft, presence: true
+
  enum draft: { release: 0, draft: 1 }
 
   def get_image
