@@ -12,26 +12,37 @@
 
 
 
-  <header style="background-color:#73D0C2;">
+  <header style="background-color:#9DDCDC;">
 
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
-  <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to "会社名", root_path %></h5>
+  <h5 class="my-0 mr-md-auto font-weight-normal "><%= link_to "会社名", root_path %></h5>
+
+
 
 <% if user_signed_in? %>
-  会員ログイン
+  <nav class="my-2 my-md-0 mr-md-3">
+  <%= form_tag({controller:"lists",action:"index"},method: :get)do %>
+  <%= text_field_tag :search %>
+  <%= select_tag :tag_id,
+  options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+  { prompt: '全て',}%>
+  <%= submit_tag 'レシピ検索' %><% end %>
   <p>ようこそ、<%= current_user.name %>さん！</p>
   <%= link_to "投稿一覧", lists_path %>
   <%= link_to "マイページ", users_path(current_user) %>
   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+  </nav>
 <% elsif admin_signed_in? %>
+  <nav class="my-2 my-md-0 mr-md-3">
   <%= link_to "管理トップ", admin_root_path %>
   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+  </nav>
 <% else %>
   <nav class="my-2 my-md-0 mr-md-3">
   <%= link_to "About", about_path, class: "p-2 text-dark" %>
   <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
-  <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-info" %>
-  <%= link_to "ユーザー登録（無料）", new_user_registration_path, class: "btn btn-outline-success" %>
+  <%= link_to "ログイン", new_user_session_path, class: "btn btn-info" %>
+  <%= link_to "ユーザー登録（無料）", new_user_registration_path, class: "btn btn-danger" %>
   <%= link_to "管理人ログイン", new_admin_session_path %>
   </nav>
 <% end %>
@@ -41,4 +52,5 @@
     <%= yield %>
   <body style="background-color:#FFF4E0;">
   </body>
+
 </html>
