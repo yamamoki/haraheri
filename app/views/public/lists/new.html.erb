@@ -2,6 +2,15 @@
 <p>Find me in app/views/public/lists/new.html.erb</p>
 
 <h1>新規投稿</h1>
+<% if @list.errors.any? %>
+  <%= @list.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @list.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @list do |f| %>
   <h4>タイトル</h4>
   <%= f.text_field :title %>
@@ -28,7 +37,6 @@
 
   <%= f.radio_button :draft, "release" %>
   <%= f.label :draft_draft, "公開" %>
-
   <%= f.radio_button :draft, "draft" %>
   <%= f.label :draft_release, "下書き" %>
 
