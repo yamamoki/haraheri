@@ -3,7 +3,8 @@ class Public::FavoritesController < ApplicationController
     @user = User.find(params[:list_id])
     @lists = @user.lists
     favorites = Favorite.where(user_id: current_user.id).pluck(:list_id)
-    @favorite_list = List.find(favorites)
+    @lists = List.find(favorites)
+    @lists = Kaminari.paginate_array(@lists).page(params[:page]).per(6)
   end
 
   def create
