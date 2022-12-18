@@ -3,42 +3,32 @@
  <div class="container">
   <div class="row">
     <div class="col-lg-4">
-　　　　<%= image_tag @list.get_image, :size => '300x300' %>
+      <%= image_tag @list.get_image, :size => '300x300' %>
     </div>
-    <div class="col-lg-1"></div>
-    <div class="col-lg-7">
+    <div class="col-lg-8">
       <div class="row">
-     <div class="col-12">
-       タイトル
-<p><%= @list.title %></p>
-     </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
+        <div class="col-lg-12 border-bottom">
           材料
-  <p><%= @list.material %></p>
+  <p><%=safe_join(@list.material.split("\n"),tag(:br))%></p>
         </div>
       </div>
       <div class="row">
-        <div class="col-12">
+        <div class="col-lg-12">
           作り方
-           <p><%= @list.body %></p>
+           <p><%=safe_join(@list.body.split("\n"),tag(:br))%></p>
       </div>
       </div>
 </div>
- </div>
-
+</div>
       <div class="row">
       <div class="col-lg-12">
-
       <div>
   <p>コメント件数：<%= @list.post_comments.count %></p>
-
   <% if user_signed_in? %>
   <% @list.post_comments.each do |post_comment| %>
     <%= post_comment.user.name %>
     <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-    <p><%= post_comment.comment %>
+    <p><%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
     <% if post_comment.user == current_user %>
       <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete %>
     <% end %></p>
@@ -54,8 +44,6 @@
   <% end %>
 </div>
 <% end %>
-
-       <!-- ここに日記 -->.
     </div>
   </div>
 </div>
