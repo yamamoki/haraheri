@@ -1,39 +1,47 @@
-<h1>Public::Lists#show</h1>
-<p>Find me in app/views/public/lists/show.html.erb</p>
+<h2 class="text-center"><%= @list.title %></h2>
 
-  <p>ユーザーネーム
-  <%= @list.user.name %></p>
+ <div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+　　　　<%= image_tag @list.get_image, :size => '300x300' %>
+    </div>
+    <div class="col-lg-1"></div>
+    <div class="col-lg-7">
+      <div class="row">
+     <div class="col-12">
+       タイトル
+<p><%= @list.title %></p>
+     </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          材料
+  <p><%= @list.material %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          作り方
+           <p><%= @list.body %></p>
+      </div>
+      </div>
+</div>
+ </div>
 
-  <p>タイトル</p>
-  <span><%= @list.title %></span>
+      <div class="row">
+      <div class="col-lg-12">
 
-  <p>タグ</p>
-  <% @list.tags.each do |tag| %>
-    <%= tag.name %>
-  <% end %>
-
-  <h2>画像</h2>
-  <%= image_tag @list.get_image, :size => '300x300' %>
-
-  <p>材料</p>
-  <span><%= @list.material %></span>
-  <p>本文</p>
-  <span><%= @list.body %></span>
- <% if @list.user == current_user %>
-  <%= link_to "編集", edit_list_path(@list) %>
-  <%= link_to "削除", list_path(@list), method: :delete %>
- <% end %>
-
-<div>
+      <div>
   <p>コメント件数：<%= @list.post_comments.count %></p>
 
   <% if user_signed_in? %>
   <% @list.post_comments.each do |post_comment| %>
     <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+    <p><%= post_comment.comment %>
     <% if post_comment.user == current_user %>
       <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete %>
-    <% end %>
+    <% end %></p>
   <% end %>
 
   <div id="favorites_<%= @list.id %>">
@@ -45,4 +53,9 @@
     <%= f.submit "送信する" %>
   <% end %>
 </div>
- <% end %>
+<% end %>
+
+       <!-- ここに日記 -->.
+    </div>
+  </div>
+</div>
