@@ -25,7 +25,7 @@
 ・料理メモの代わりに.
 
 ## 設計書
-[はらへり.drawio.pdf](https://github.com/yamamoki/haraheri/files/10262317/drawio.pdf)
+![はらへり-ER図.drawio.pdf](https://github.com/yamamoki/haraheri/files/10262409/-ER.drawio.pdf)
 
 ## 開発環境
 - OS：Linux(CentOS)
