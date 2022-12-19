@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = current_user
-    @lists = @user.lists.page(params[:page])
+    @lists = @user.lists.page(params[:page]).order('id DESC').per(6)
   end
 
   def edit
@@ -34,4 +34,5 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email)
   end
+  
 end

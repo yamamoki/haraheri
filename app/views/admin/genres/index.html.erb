@@ -3,3 +3,48 @@
 ジャンル一覧
 
 ジャンル登録
+ <p>ユーザーネーム
+  <%= @list.user.name %></p>
+
+  <p>タイトル</p>
+  <span><%= @list.title %></span>
+
+  <p>タグ</p>
+  <% @list.tags.each do |tag| %>
+    <%= tag.name %>
+  <% end %>
+
+  <h2>画像</h2>
+  <%= image_tag @list.get_image, :size => '300x300' %>
+
+  <p>材料</p>
+  <span><%= @list.material %></span>
+  <p>本文</p>
+  <span><%= @list.body %></span>
+ <% if @list.user == current_user %>
+  <%= link_to "編集", edit_list_path(@list) %>
+  <%= link_to "削除", list_path(@list), method: :delete %>
+ <% end %>
+
+<div>
+  <p>コメント件数：<%= @list.post_comments.count %></p>
+
+  <% if user_signed_in? %>
+  <% @list.post_comments.each do |post_comment| %>
+    <%= post_comment.user.name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+    <% if post_comment.user == current_user %>
+      <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete %>
+    <% end %>
+  <% end %>
+
+  <div id="favorites_<%= @list.id %>">
+   <%= render "public/favorites/favorites", list: @list %>
+ </div>
+<div>
+  <%= form_with model: [@list, @post_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
+ <% end %>
