@@ -1,37 +1,40 @@
-<%= flash[:notice] %>
+
 
 <div class="text-center">
   <h2><%= @list.title %></h2>
 </div>
 <div class="container">
-  <div id="favorites_<%= @list.id %>">
-  <%= render "public/favorites/favorites", list: @list %>
-  </div>
-
   <% @list.tags.each do |tag| %>
     <h5 class="fa-solid fa-tag"><%= tag.name %>&nbsp;</h5>
   <% end %>
-
   <div class="row">
-    <div class="col-lg-4">
-    <p><%= image_tag @list.get_image, :size => '300x300' %></p>
-    </div>
-  <div class="col-lg-8">
-    <div class="row">
-      <div class="col-lg-12 border-bottom border-top">
-        材料
-      <p><%=safe_join(@list.material.split("\n"),tag(:br))%></p>
+      <div class="col-lg-4">
+      <p><%= image_tag @list.get_image, :size => '300x300' %></p>
+      </div>
+    <div class="col-lg-8" style="background-color:#FFFFFF">
+      <div class="row">
+        <div class="col-lg-12 border-bottom border-top">
+          材料
+        <p><%=safe_join(@list.material.split("\n"),tag(:br))%></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          作り方
+           <p><%=safe_join(@list.body.split("\n"),tag(:br))%></p>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-lg-12">
-        作り方
-         <p><%=safe_join(@list.body.split("\n"),tag(:br))%></p>
-      </div>
-    </div>
-  </div>
   </div>
 </div>
+<div class="container">
+  <% if user_signed_in? %>
+    <div id="favorites_<%= @list.id %>">
+    <%= render "public/favorites/favorites", list: @list %>
+    </div>
+  <% end %>
+</div>
+
 
 <div class="container">
   <div class="row">
@@ -39,13 +42,12 @@
       <div>
       <p><%= form_with model: [@list, @post_comment] do |f| %>
         <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-        <%= f.submit "送信する" %>
+        <%= f.submit "送信する"  %>
         <% end %></p>
       </div>
     </div>
     <div class="col-lg-8">
       <p class="fa-solid fa-comment">&nbsp;<%= @list.post_comments.count %></p>
-      <% if user_signed_in? %>
         <% @list.post_comments.first(3).each do |post_comment| %>
           <p><%= post_comment.user.name %>
           <%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
@@ -54,17 +56,21 @@
             <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete %>
           <% end %></p>
         <% end %>
-      <% end %>
+
       <% if @post_comments.offset(3).any? %>
         <details>
           <summary>全てのコメントを表示</summary>
           <% @list.post_comments.offset(3).each do |post_comment| %>
-            <p><%= post_comment.user.name %>
-            <%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
-            <p><%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
+            <p>
+              <%= post_comment.user.name %>
+              <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+            </p>
+            <p>
+            <%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
             <% if post_comment.user == current_user %>
               <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete %>
-            <% end %></p>
+            <% end %>
+            </p>
           <% end %>
         </details>
       <% end %>
