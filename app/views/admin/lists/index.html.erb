@@ -1,4 +1,35 @@
 <h1>Admin::Lists#index</h1>管理
 <p>Find me in app/views/admin/lists/index.html.erb</p>
 投稿一覧
+<div class="container">
+  <h1>投稿一覧</h1>
+  <%= form_tag({controller:"lists",action:"index"},method: :get)do %>
+    <%= text_field_tag :search %>
+    <%= select_tag :tag_id,
+    options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+    { prompt: '全て',}%>
+    <%= submit_tag '検索する' %>
+  <% end %>
 
+  <div class="album py-5">
+    <div class="row">
+ <% @lists.each do |list| %>
+  <div class="col-md-4">
+    <div class="card mb-4 shadow-sm">
+    <img class="card-img-top"><%= image_tag list.get_image, size: "100%x150" %>
+      <div class="card-body">
+      <h4 class="card-title">
+      <%= link_to list.title.truncate(10), admin_list_path(list.id) %></h4>
+      <p class="fa-solid fa-comment">&nbsp;<%= list.post_comments.count %></p>
+      <p class="card-name">投稿者：<%= list.user.name %></p>
+      <% list.tags.each do |tag| %>
+      <p class="card-tag fa-solid fa-tag">
+      <%= tag.name %>&nbsp;</p>
+      <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>    </div>
+    <%= paginate @lists %>
+  </div>
+</div>

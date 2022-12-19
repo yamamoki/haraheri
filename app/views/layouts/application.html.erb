@@ -33,6 +33,14 @@
         </nav>
         <% elsif admin_signed_in? %>
         <nav class="my-2 my-md-0 mr-md-3">
+            <%= form_tag({controller:"lists",action:"index"},method: :get)do %>
+            <%= text_field_tag :search %>
+            <%= select_tag :tag_id,
+            options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+            { prompt: '全て',}%>
+            <%= submit_tag 'レシピ検索' %>
+          <% end %>
+          <p></p>
           <%= link_to "管理トップ", admin_root_path, class: "btn btn-secondary" %>
           <%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-danger", method: :delete %>
         　<% else %>

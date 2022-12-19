@@ -1,9 +1,7 @@
-
-
 <div class="text-center">
   <h2><%= @list.title %></h2>
 </div>
-<bi0dy class="container">
+<div class="container">
   <% @list.tags.each do |tag| %>
     <h4 class="fa-solid fa-tag"><%= tag.name %>&nbsp;</h4>
   <% end %>
@@ -33,10 +31,7 @@
     <div id="favorites_<%= @list.id %>">
     <%= render "public/favorites/favorites", list: @list %>
     </div>
-
 </div>
-
-
 <div class="container">
   <div class="row">
     <div class="col-lg-4">
@@ -45,7 +40,7 @@
         <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
         <%= f.submit "送信する"  %>
         <% end %></p>
-  <% end %>
+    <% end %>
       </div>
     </div>
     <div class="col-lg-8">
