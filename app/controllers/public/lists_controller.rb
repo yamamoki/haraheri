@@ -39,6 +39,7 @@ class Public::ListsController < ApplicationController
   def update
     list = List.find(params[:id])
     list.update(list_params)
+    flash[:notice] = "変更しました"
     redirect_to list_path(list.id)
   end
 
@@ -46,7 +47,7 @@ class Public::ListsController < ApplicationController
   def destroy
     @list = List.find(params[:id]).destroy
     flash[:alert] = "投稿を削除しました"
-    redirect_to lists_path(@list)
+    redirect_to users_path(current_user)
   end
 
 
