@@ -39,6 +39,7 @@ class Public::ListsController < ApplicationController
   def update
     list = List.find(params[:id])
     list.update(list_params)
+    flash[:notice] = "変更しました"
     redirect_to list_path(list.id)
   end
 
