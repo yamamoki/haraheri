@@ -20,6 +20,7 @@ class Public::ListsController < ApplicationController
     @list.user_id = current_user.id
     if @list.save
     redirect_to list_path(@list.id)
+    flash[:notice] = "投稿が成功しました"
     else
     render 'new'
     end
@@ -44,6 +45,7 @@ class Public::ListsController < ApplicationController
 
   def destroy
     @list = List.find(params[:id]).destroy
+    flash[:alert] = "投稿を削除しました"
     redirect_to lists_path(@list)
   end
 
