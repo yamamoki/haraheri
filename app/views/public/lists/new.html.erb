@@ -1,6 +1,4 @@
-<h1>Public::Lists#new</h1>
-<p>Find me in app/views/public/lists/new.html.erb</p>
-
+<div class="container">
 <h1>新規投稿</h1>
 <% if @list.errors.any? %>
   <%= @list.errors.count %>件のエラーが発生しました
@@ -10,35 +8,42 @@
     <% end %>
   </ul>
 <% end %>
-
 <%= form_with model: @list do |f| %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-
-	<h4>材料</h4>
-  <%= f.text_area :material %>
-
-  <h4>作り方</h4>
-  <%= f.text_area :body %>
 
   <h4>画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
 
+  <h4>タイトル</h4>
+  <%= f.text_field :title, class: 'form-control',size: "1x1" %>
 
-  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+	<h4>材料</h4>
+  <%= f.text_area :material, class: 'form-control', rows: "5" %>
+
+  <h4>作り方</h4>
+  <%= f.text_area :body, class: 'form-control',size: "10x10" %>
+</br>
+<div class="row">
+  <div class="col-sm-6 col-xs-6">
+    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
     <div class='form-check'>
       <%= tag.label class: 'form-check-label' do %>
-        <%= tag.check_box class: 'form-check-input' %>
+        <%= tag.check_box class: 'form-switch' %>
         <%= tag.text %>
-      <% end %>
-    </div>
+　　　<% end %>
+　　</div>
   <% end %>
-
-
+  </div>
+  <h4 class="col-sm-6 col-xs-6">
   <%= f.radio_button :draft, "release" %>
   <%= f.label :draft_draft, "公開" %>
   <%= f.radio_button :draft, "draft" %>
   <%= f.label :draft_release, "下書き" %>
-
+<p class="text-right">
   <%= f.submit '投稿' %>
+</p>
 <% end %>
+</h4>
+</div>
+
+</div>
+</br>

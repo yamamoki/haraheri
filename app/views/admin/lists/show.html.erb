@@ -1,26 +1,63 @@
-<h1>Admin::Lists#show</h1>管理
-<p>Find me in app/views/admin/lists/show.html.erb</p>
-投稿詳細
 
-  <p>ユーザーネーム
-  <%= @list.user.name %></p>
-
-  <p>タイトル</p>
-  <span><%= @list.title %></span>
-
-  <h2>画像</h2>
-  <%= image_tag @list.get_image, :size => '300x300' %>
-
-  <p>材料</p>
-  <span><%= @list.material %></span>
-  <p>本文</p>
-  <span><%= @list.body %></span>
-
-<div>
-  <p>コメント件数：<%= @list.post_comments.count %></p>
-  <% @list.post_comments.each do |post_comment| %>
-    <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-      <%= link_to "削除", admin_list_post_comment_path(post_comment.list, post_comment), method: :delete %>
+<div class="text-center">
+  <h2><%= @list.title %></h2>
+</div>
+<div class="container">
+  <% @list.tags.each do |tag| %>
+    <h4 class="fa-solid fa-tag"><%= tag.name %>&nbsp;</h4>
   <% end %>
-
+  <p class="card-name">投稿者：<%= @list.user.name %></p>
+  <div class="row">
+      <div class="col-lg-4">
+      <p><%= image_tag @list.get_image, :size => '300x300' %></p>
+      </div>
+    <div class="col-lg-8" style="background-color:#FFFFFF">
+      <div class="row">
+        <div class="col-lg-12 border-bottom border-top">
+          材料
+        <p><%=safe_join(@list.material.split("\n"),tag(:br))%></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          作り方
+           <p><%=safe_join(@list.body.split("\n"),tag(:br))%></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <% if user_signed_in? %>
+    <div id="favorites_<%= @list.id %>">
+    <%= render "public/favorites/favorites", list: @list %>
+    </div>
+</div>
+<div class="container">
+  <div class="row">
+    <% end %>
+      <p class="fa-solid fa-comment">&nbsp;<%= @list.post_comments.count %></p>
+        <% @list.post_comments.first(3).each do |post_comment| %>
+          <p><%= post_comment.user.name %>
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
+          <p><%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
+            <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete %>
+          </p>
+        <% end %>
+      <% if @post_comments.offset(3).any? %>
+        <details>
+          <summary>全てのコメントを表示</summary>
+          <% @list.post_comments.offset(3).each do |post_comment| %>
+            <p>
+              <%= post_comment.user.name %>
+              <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+            </p>
+            <p>
+            <%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
+            <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete %>
+            </p>
+          <% end %>
+        </details>
+      <% end %>
+    </div>
+  </div>
