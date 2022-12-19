@@ -1,19 +1,18 @@
-
-<%= form_tag({controller:"lists",action:"index"},method: :get)do %>
-  <%= text_field_tag :search %>
-  <%= select_tag :tag_id,
-  options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-  { prompt: '全て',}%>
-  <%= submit_tag '検索する' %>
-<% end %>
-
-<h1>投稿一覧</h1>
-<div class="album py-5">
-  <div class="container">
+<div class="container">
+  <h1>投稿一覧</h1>
+  <%= form_tag({controller:"lists",action:"index"},method: :get)do %>
+    <%= text_field_tag :search %>
+    <%= select_tag :tag_id,
+    options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+    { prompt: '全て',}%>
+    <%= submit_tag '検索する' %>
+  <% end %>
+    
+  <div class="album py-5">
     <div class="row">
-    <%= render 'public/lists/index', lists: @lists %>
+      <%= render 'public/lists/index', lists: @lists %>
     </div>
-     <%= paginate @lists %>
+    <%= paginate @lists %>
   </div>
 </div>
 

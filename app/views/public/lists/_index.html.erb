@@ -1,17 +1,17 @@
-<% @lists.each do |list| %>
-      <div class="col-md-4">
-        <div class="card mb-4 shadow-sm">
-        <img class="card-img-top"><%= image_tag list.get_image, size: "100%x150" %>
-          <div class="card-body">
-          <h5 class="card-title">
-          <%= link_to list.title.truncate(10), list_path(list.id) %></h5>
-          <p class="fa-solid fa-comment">&nbsp;<%= list.post_comments.count %></p>
-          <p class="card-name">投稿者：<%= list.user.name %></p>
-          <% list.tags.each do |tag| %>
-          <p class="card-tag fa-solid fa-tag">
-          <%= tag.name %>&nbsp;</p>
-          <% end %>
-          </div>
-        </div>
+<% lists.each do |list| %>
+  <div class="col-md-4">
+    <div class="card mb-4 shadow-sm">
+    <img class="card-img-top"><%= image_tag list.get_image, size: "100%x150" %>
+      <div class="card-body">
+      <h4 class="card-title">
+      <%= link_to list.title.truncate(10), list_path(list.id) %></h4>
+      <p class="fa-solid fa-comment">&nbsp;<%= list.post_comments.count %></p>
+      <p class="card-name">投稿者：<%= list.user.name %></p>
+      <% list.tags.each do |tag| %>
+      <p class="card-tag fa-solid fa-tag">
+      <%= tag.name %>&nbsp;</p>
+      <% end %>
       </div>
-    <% end %>
+    </div>
+  </div>
+<% end %>
