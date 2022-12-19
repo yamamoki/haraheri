@@ -1,18 +1,20 @@
+<%= flash[:notice] %>
+
 <div class="text-center">
   <h2><%= @list.title %></h2>
-        <div id="favorites_<%= @list.id %>">
-        <%= render "public/favorites/favorites", list: @list %>
-      </div>
+</div>
+<div class="container">
+  <div id="favorites_<%= @list.id %>">
+  <%= render "public/favorites/favorites", list: @list %>
+  </div>
 
   <% @list.tags.each do |tag| %>
-  <h4>#<%= tag.name %></h4>
+    <h5 class="fa-solid fa-tag"><%= tag.name %>&nbsp;</h5>
   <% end %>
-</div>
 
-<div class="container">
   <div class="row">
     <div class="col-lg-4">
-    <%= image_tag @list.get_image, :size => '300x300' %>
+    <p><%= image_tag @list.get_image, :size => '300x300' %></p>
     </div>
   <div class="col-lg-8">
     <div class="row">
@@ -35,18 +37,17 @@
   <div class="row">
     <div class="col-lg-4">
       <div>
-        <%= form_with model: [@list, @post_comment] do |f| %>
+      <p><%= form_with model: [@list, @post_comment] do |f| %>
         <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
         <%= f.submit "送信する" %>
-        <% end %>
+        <% end %></p>
       </div>
     </div>
-
     <div class="col-lg-8">
-      <p>コメント件数：<%= @list.post_comments.count %></p>
+      <p class="fa-solid fa-comment">&nbsp;<%= @list.post_comments.count %></p>
       <% if user_signed_in? %>
         <% @list.post_comments.each do |post_comment| %>
-          <%= post_comment.user.name %>
+          <p><%= post_comment.user.name %></p>
           <%= post_comment.created_at.strftime('%Y/%m/%d') %>
           <p><%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
           <% if post_comment.user == current_user %>
