@@ -1,6 +1,33 @@
 <h1>Admin::Homes#top</h1>
 管理Top
 <p>Find me in app/views/admin/homes/top.html.erb</p>
-<%= link_to "会員一覧", admin_users_path %>
-<%= link_to "投稿一覧", admin_lists_path %>
-<%= link_to "ジャンル", admin_genres_path %>
+  <table class="table">
+    <thead>
+      <tr class="bg-light">
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>投稿数</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+<% @users.each do |users| %>
+  <tr>
+    <td><%= users.id %></td>
+    <td><u>
+      <%= link_to admin_user_path(users), :style=>"color:black;" do %>
+        <%= users.name %>
+      <% end %>
+    </td></u>
+    <td><%= users.lists.count %></td>
+    <td><%= users.email %></td>
+    <% if users.is_deleted %>
+      <td class="text-secondary">退会</td>
+    <% else %>
+      <td class="text-success">有効</td>
+    <% end %>
+  </tr>
+<% end %>
+  </table>
+
+<%= paginate @user %>
