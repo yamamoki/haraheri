@@ -39,14 +39,17 @@
   <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
   <%= link_to "ログイン", new_user_session_path, class: "btn btn-info" %>
   <%= link_to "ユーザー登録（無料）", new_user_registration_path, class: "btn btn-danger" %>
-  <%= link_to "管理人ログイン", new_admin_session_path %>
   </nav>
 <% end %>
   </div>
   </header>
 
+ 　<%= flash[:notice] %>
     <%= yield %>
   <body style="background-color:#FFF4E0;">
   </body>
 
+<footer>
+  <%= link_to "管理人ログイン", new_admin_session_path %>
+</footer>
 </html>
