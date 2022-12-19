@@ -8,9 +8,8 @@
     <% end %>
   </ul>
 <% end %>
-
 <%= form_with model: @list do |f| %>
-<div class="row">
+
   <h4>画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
 
@@ -22,7 +21,6 @@
 
   <h4>作り方</h4>
   <%= f.text_area :body, class: 'form-control',size: "10x10" %>
-  </div>
 </br>
 <div class="row">
   <div class="col-sm-6 col-xs-6">
