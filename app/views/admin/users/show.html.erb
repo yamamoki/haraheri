@@ -1,3 +1,4 @@
+
 <h1>Admin::Users#show</h1>
 <p>Find me in app/views/admin/users/show.html.erb</p>
 管理
@@ -13,14 +14,13 @@
   </tr>
   <tr>
   　<th>氏名</th>
-    <td>
-      <%= @user.name %>
-  　</td>
+    <td><%= @user.name %></td>
   </tr>
   <tr>
     <th>メールアドレス</th>
     <td><%= @user.email %></td>
   </tr>
+
   <tr>
     <th>会員ステータス</th>
       <td><%= form_with model: @user, url: admin_user_path(@user), local: true do |f| %>
