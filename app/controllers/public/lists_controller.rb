@@ -27,8 +27,8 @@ class Public::ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    @post_comments = @list.post_comments.order(created_at: :desc)
     @post_comment = PostComment.new
-    @post_comments = @list.post_comments
   end
 
   def edit
