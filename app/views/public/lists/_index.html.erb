@@ -5,6 +5,7 @@
           <div class="card-body">
           <h5 class="card-title">タイトル：
           <br><%= link_to list.title.truncate(10), list_path(list.id) %></h5>
+          <p class="fa-solid fa-comment">&nbsp;<%= list.post_comments.count %></p>
           <h5 class="card-name">投稿者：<%= list.user.name %></h5>
           <h5 class="card-tag"><% list.tags.each do |tag| %>
           #<%= tag.name %>
