@@ -1,48 +1,79 @@
-<h1>Public::Lists#show</h1>
-<p>Find me in app/views/public/lists/show.html.erb</p>
 
-  <p>ユーザーネーム
-  <%= @list.user.name %></p>
 
-  <p>タイトル</p>
-  <span><%= @list.title %></span>
-
-  <p>タグ</p>
+<div class="text-center">
+  <h2><%= @list.title %></h2>
+</div>
+<div class="container">
   <% @list.tags.each do |tag| %>
-    <%= tag.name %>
+    <h5 class="fa-solid fa-tag"><%= tag.name %>&nbsp;</h5>
   <% end %>
-
-  <h2>画像</h2>
-  <%= image_tag @list.get_image, :size => '300x300' %>
-
-  <p>材料</p>
-  <span><%= @list.material %></span>
-  <p>本文</p>
-  <span><%= @list.body %></span>
- <% if @list.user == current_user %>
-  <%= link_to "編集", edit_list_path(@list) %>
-  <%= link_to "削除", list_path(@list), method: :delete %>
- <% end %>
-
-<div>
-  <p>コメント件数：<%= @list.post_comments.count %></p>
-
+  <div class="row">
+      <div class="col-lg-4">
+      <p><%= image_tag @list.get_image, :size => '300x300' %></p>
+      </div>
+    <div class="col-lg-8" style="background-color:#FFFFFF">
+      <div class="row">
+        <div class="col-lg-12 border-bottom border-top">
+          材料
+        <p><%=safe_join(@list.material.split("\n"),tag(:br))%></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          作り方
+           <p><%=safe_join(@list.body.split("\n"),tag(:br))%></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
   <% if user_signed_in? %>
-  <% @list.post_comments.each do |post_comment| %>
-    <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-    <% if post_comment.user == current_user %>
-      <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete %>
-    <% end %>
-  <% end %>
-
-  <div id="favorites_<%= @list.id %>">
-   <%= render "public/favorites/favorites", list: @list %>
- </div>
-<div>
-  <%= form_with model: [@list, @post_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
+    <div id="favorites_<%= @list.id %>">
+    <%= render "public/favorites/favorites", list: @list %>
+    </div>
   <% end %>
 </div>
- <% end %>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <div>
+      <p><%= form_with model: [@list, @post_comment] do |f| %>
+        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+        <%= f.submit "送信する"  %>
+        <% end %></p>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <p class="fa-solid fa-comment">&nbsp;<%= @list.post_comments.count %></p>
+        <% @list.post_comments.first(3).each do |post_comment| %>
+          <p><%= post_comment.user.name %>
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
+          <p><%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
+          <% if post_comment.user == current_user %>
+            <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete %>
+          <% end %></p>
+        <% end %>
+
+      <% if @post_comments.offset(3).any? %>
+        <details>
+          <summary>全てのコメントを表示</summary>
+          <% @list.post_comments.offset(3).each do |post_comment| %>
+            <p>
+              <%= post_comment.user.name %>
+              <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+            </p>
+            <p>
+            <%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
+            <% if post_comment.user == current_user %>
+              <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete %>
+            <% end %>
+            </p>
+          <% end %>
+        </details>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,9 @@
 お気に入り一覧
-<% @favorite_list.each do |list|%>
-<p>タイトル</p>
-  <%= link_to list.title, list_path(list.id)  %>
-
-  <p>ユーザーネーム</p>
-  <%= list.user.name %>
-
-  <p>画像</p>
-  <%= image_tag list.get_image, :size => '200x200' %>
-
-<% end %>
-
+<div class="album py-5">
+  <div class="container">
+    <div class="row">
+    <%= render 'public/lists/index', lists: @lists %>
+    </div>
+     <%= paginate @lists %>
+  </div>
+</div>

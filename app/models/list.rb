@@ -1,6 +1,6 @@
 class List < ApplicationRecord
  has_one_attached :image
- has_many :post_comments, dependent: :destroy
+ has_many :post_comments, -> { order(created_at: :desc) }, dependent: :destroy
  has_many :favorites, dependent: :destroy
 
  has_many :post_tags, dependent: :destroy
@@ -8,6 +8,12 @@ class List < ApplicationRecord
 
  belongs_to :user, optional: true
  belongs_to :genre, optional: true
+
+ validates :title, presence: true
+ validates :material, presence: true
+ validates :body, presence: true
+ validates :tags, presence: true
+ validates :draft, presence: true
 
  enum draft: { release: 0, draft: 1 }
 

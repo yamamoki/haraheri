@@ -1,44 +1,59 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://kit.fontawesome.com/b832ec735d.js" crossorigin="anonymous"></script>
     <title>腹が減っては戦はできぬ</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
 
+  <header style="background-color:#9DDCDC;">
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
+      <h5 class="my-0 mr-md-auto font-weight-normal "><%= link_to image_tag("haraheri.png", size: "300x100"), root_path, class: "header-button btn text-light " %></h5>
 
-
-  <header style="background-color:#73D0C2;">
-
-  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
-  <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to "会社名", root_path %></h5>
-
-<% if user_signed_in? %>
-  会員ログイン
-  <p>ようこそ、<%= current_user.name %>さん！</p>
-  <%= link_to "投稿一覧", lists_path %>
-  <%= link_to "マイページ", users_path(current_user) %>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<% elsif admin_signed_in? %>
-  <%= link_to "管理トップ", admin_root_path %>
-  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-<% else %>
-  <nav class="my-2 my-md-0 mr-md-3">
-  <%= link_to "About", about_path, class: "p-2 text-dark" %>
-  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
-  <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-info" %>
-  <%= link_to "ユーザー登録（無料）", new_user_registration_path, class: "btn btn-outline-success" %>
-  <%= link_to "管理人ログイン", new_admin_session_path %>
-  </nav>
-<% end %>
-  </div>
+      <% if user_signed_in? %>
+        <nav class="my-2 my-md-0 mr-md-3">
+          <%= form_tag({controller:"lists",action:"index"},method: :get)do %>
+            <%= text_field_tag :search %>
+            <%= select_tag :tag_id,
+            options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+            { prompt: '全て',}%>
+            <%= submit_tag 'レシピ検索' %>
+          <% end %>
+          <p>ようこそ、<%= current_user.name %>さん！</p>
+          <%= link_to "投稿一覧", lists_path, class: "btn btn-success" %>
+          <%= link_to "マイページ", users_path(current_user), class: "btn btn-info" %>
+          <%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-danger", method: :delete %>
+        </nav>
+        <% elsif admin_signed_in? %>
+        <nav class="my-2 my-md-0 mr-md-3">
+          <%= link_to "管理トップ", admin_root_path, class: "btn btn-secondary" %>
+          <%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-danger", method: :delete %>
+        　<% else %>
+        </nav>
+        <nav class="my-2 my-md-0 mr-md-3">
+          <%= link_to "About", about_path, class: "p-2 text-dark" %>
+          <%= link_to "管理人ログイン", new_admin_session_path %>
+          <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-info" %>
+          <%= link_to "ユーザー登録（無料）", new_user_registration_path, class: "btn btn-warning" %>
+        </nav>
+      <% end %>
+    </div>
   </header>
 
-    <%= yield %>
+ <%= flash[:notice] %>
+
   <body style="background-color:#FFF4E0;">
+    <%= yield %>
   </body>
+
+  <footer>
+  </footer>
 </html>

@@ -4,9 +4,7 @@
 
 <%= link_to "プロフィール編集", users_edit_path %>
 <%= link_to"お気に入り一覧",list_favorites_path(@user) %>
-<% if user_signed_in? && @user.id == current_user.id %>
-		<%= link_to "退会", check_path, method: :get, class: "btn btn-outline-danger" %>
-<% end %>
+投稿数<%= current_user.lists.count %>
 
 <div class="album py-5">
   <div class="container">
@@ -17,10 +15,16 @@
          <img class="card-img-top"><%= image_tag list.get_image %>
           <div class="card-body">
           <h5>タイトル：<%= link_to list.title, list_path(list.id) %></h5>
-          <h6><% list.tags.each do |tag| %>#<%= tag.name %><% end %></h6>
-          <h6>現在、<%= list.draft_i18n %>中です。</h6>
-          <h6><%= list.post_comments.count %> コメント</h6>
-          <h6 class="text-right"><%= link_to "編集", edit_list_path(list) %></h6>
+          <% list.tags.each do |tag| %>
+          <p class="fa-solid fa-tag"><%= tag.name %>&nbsp;</p>
+          <% end %>
+          <p>現在、<%= list.draft_i18n %>中です。</p>
+          <p class="fa-solid fa-comment">&nbsp;<%= list.post_comments.count %></p>
+          <p>保存数<%= list.favorites.count %></p>
+          <p class="text-right">
+            <%= link_to "編集", edit_list_path(list) %>
+          　<%= link_to "削除", list_path(list), method: :delete %>
+          </p>
           </div>
         </div>
       </div>

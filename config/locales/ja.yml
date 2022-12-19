@@ -1,4 +1,13 @@
 ja:
+   activerecord:
+    attributes:
+      list:
+        title: タイトル
+        material: 材料
+        body: 作り方
+        tags: タグ
+        draft: 公開状況
+
    enums:
       list:
         draft:

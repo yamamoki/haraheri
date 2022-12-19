@@ -11,20 +11,7 @@
 <div class="album py-5">
   <div class="container">
     <div class="row">
-    <% @lists.each do |list| %>
-      <div class="col-md-4">
-        <div class="card mb-4 shadow-sm">
-        <img class="card-img-top"><%= image_tag list.get_image %>
-          <div class="card-body">
-          <h5 class="card-title">タイトル：<%= link_to list.title, list_path(list.id) %></h5>
-          <h5 class="card-name">投稿者：<%= list.user.name %></h5>
-          <h5 class="card-tag"><% list.tags.each do |tag| %>
-          #<%= tag.name %>
-          <% end %></h5>
-          </div>
-        </div>
-      </div>
-    <% end %>
+    <%= render 'public/lists/index', lists: @lists %>
     </div>
      <%= paginate @lists %>
   </div>
