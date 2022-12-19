@@ -7,7 +7,6 @@ class List < ApplicationRecord
  has_many :tags, through: :post_tags, dependent: :destroy
 
  belongs_to :user, optional: true
- belongs_to :genre, optional: true
 
  validates :title, presence: true
  validates :material, presence: true
