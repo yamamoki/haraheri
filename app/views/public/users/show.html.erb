@@ -1,10 +1,12 @@
 <div class="container">
 <h2><%= current_user.name %>さんのマイページ</h2>投稿数<%= current_user.lists.count %>
 
-  <div class="row">
-    <h4 class="col-sm-4 col-xs-6"><%= link_to "保存済一覧", list_favorites_path(@user) %></h4>
-    <h4 class="col-sm-4 col-xs-6"><%= link_to "新規投稿", new_list_path %></h4>
-    <h4 class="col-sm-4 col-xs-6"><%= link_to "プロフィール編集", users_edit_path %></h4>
+  <div style="text-align:center;">
+    <div class="row">
+      <h4 class="col-sm-4 col-xs-6"><%= link_to "保存済一覧", list_favorites_path(@user) %></h4>
+      <h4 class="col-sm-4 col-xs-6"><%= link_to "新規投稿", new_list_path %></h4>
+      <h4 class="col-sm-4 col-xs-6"><%= link_to "プロフィール編集", users_edit_path %></h4>
+    </div>
   </div>
 
 
