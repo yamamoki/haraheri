@@ -1,13 +1,14 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
- <%= link_to "新規投稿", new_list_path %>
+<div class="container">
+<h2><%= current_user.name %>さんのマイページ</h2>投稿数<%= current_user.lists.count %>
 
-<%= link_to "プロフィール編集", users_edit_path %>
-<%= link_to"お気に入り一覧",list_favorites_path(@user) %>
-投稿数<%= current_user.lists.count %>
+  <div class="row">
+    <h4 class="col-sm-4 col-xs-6"><%= link_to "保存済一覧", list_favorites_path(@user) %></h4>
+    <h4 class="col-sm-4 col-xs-6"><%= link_to "新規投稿", new_list_path %></h4>
+    <h4 class="col-sm-4 col-xs-6"><%= link_to "プロフィール編集", users_edit_path %></h4>
+  </div>
+
 
 <div class="album py-5">
-  <div class="container">
     <div class="row">
     <% @lists.each do |list| %>
       <div class="col-md-4">

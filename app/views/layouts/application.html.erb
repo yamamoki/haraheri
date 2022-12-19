@@ -26,7 +26,7 @@
             { prompt: '全て',}%>
             <%= submit_tag 'レシピ検索' %>
           <% end %>
-          <p>ようこそ、<%= current_user.name %>さん！</p>
+          <p></p>
           <%= link_to "投稿一覧", lists_path, class: "btn btn-success" %>
           <%= link_to "マイページ", users_path(current_user), class: "btn btn-info" %>
           <%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-danger", method: :delete %>
