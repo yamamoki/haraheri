@@ -2,18 +2,17 @@
 <%= form_tag({controller:"lists",action:"index"},method: :get)do %>
   <%= text_field_tag :search %>
   <%= select_tag :tag_id,
-  options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-  { prompt: '全て',}%>
-  <%= submit_tag 'レシピ検索' %><% end %>
+    options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+    { prompt: '全て',}%>
+<%= submit_tag 'レシピ検索' %><% end %>
 <h1>ここは会員Topページです</h1>
 
-
-  <div class="container" style="background-color: #ffff99; ">
-    <div class="album py-3">
-<div class="row ">
-    <%= render 'public/lists/index', lists: @lists %>
+<div class="container" style="background-color: #ffff99; ">
+  <div class="album py-3">
+    <div class="row ">
+      <%= render 'public/lists/index', lists: @lists %>
     </div>
-    </div>
-    <%= link_to ">>全て見る", lists_path %>
   </div>
+  <%= link_to ">>全て見る", lists_path %>
+</div>
 
