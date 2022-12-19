@@ -10,6 +10,7 @@ class Public::PostCommentsController < ApplicationController
 
   def destroy
     post_comment = PostComment.find(params[:id]).destroy
+    flash[:notice] = "コメントを削除しました。"
     redirect_to list_path(params[:list_id])
   end
 
