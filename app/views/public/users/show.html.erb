@@ -1,7 +1,8 @@
-<div class="container">
-<h2><%= current_user.name %>さんのマイページ</h2>投稿数<%= current_user.lists.count %>
+<div class="container text-center">
+<h2><%= current_user.name %>さんのマイページ</h2>
+<h4>投稿数<%= current_user.lists.count %></h4>
 
-  <div style="text-align:center;">
+  <div style="text-align">
     <div class="row" style="background-color: #fafad2 ">
       <h4 class="col-sm-4 col-xs-6"><%= link_to "保存済一覧", list_favorites_path(@user) %></h4>
       <h4 class="col-sm-4 col-xs-6"><%= link_to "新規投稿", new_list_path %></h4>
@@ -17,7 +18,6 @@
         <div class="card mb-4 shadow-sm">
          <img class="card-img-top"><%= image_tag list.get_image %>
           <div class="card-body">
-          タイトル</br>
           <h4><%= link_to list.title.truncate(10), list_path(list.id) %></h4>
           <% list.tags.each do |tag| %>
           <p class="fa-solid fa-tag"><%= tag.name %>&nbsp;</p>
