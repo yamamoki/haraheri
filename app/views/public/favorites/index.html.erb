@@ -1,9 +1,9 @@
-お気に入り一覧
-<div class="album py-5">
-  <div class="container">
+<div class="container text-center">
+  <h2>保存済み一覧</h2>
+  <div class="album py-5">
     <div class="row">
     <%= render 'public/lists/index', lists: @lists %>
     </div>
-     <%= paginate @lists %>
+    <%= paginate @lists %>
   </div>
 </div>
