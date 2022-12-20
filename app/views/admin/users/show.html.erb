@@ -1,30 +1,31 @@
+<div class="container">
+  <h2 class= "text-center"><%= @user.name %>さんの会員詳細</h2>
+  <table class="table table-borderless">
+    <tr>
+      <th>会員ID</th>
+      <td><%= @user.id %></td>
+    </tr>
+    <tr>
+      <th>氏名</th>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <th>会員ステータス</th>
+      <td>
+        <%= form_with model: @user, url: admin_user_path(@user), local: true do |f| %>
+        <%= f.radio_button :is_deleted, false %>有効
+        <%= f.radio_button :is_deleted, true %>退会
+        <%= f.submit "変更を保存", class: "btn btn-success" %>
+        <% end %>
+      </tb>
+    </tr>
+  </table>
 
-<h2 class= "text-center"><%= @user.name %>さんの会員詳細</h2>
-<table class="table table-borderless">
-  <tr>
-    <th>会員ID</th>
-    <td><%= @user.id %></td>
-  </tr>
-  <tr>
-  　<th>氏名</th>
-    <td><%= @user.name %></td>
-  </tr>
-  <tr>
-    <th>メールアドレス</th>
-    <td><%= @user.email %></td>
-  </tr>
-
-  <tr>
-    <th>会員ステータス</th>
-      <td><%= form_with model: @user, url: admin_user_path(@user), local: true do |f| %>
-      <%= f.radio_button :is_deleted, false %>有効
-      <%= f.radio_button :is_deleted, true %>退会
-      <%= f.submit "変更を保存", class: "btn btn-success" %></tb>
-  </tr>
-</table>
-<% end %>
-
-<table class="table">
+  <table class="table">
     <thead>
       <tr class="bg-light">
         <th>投稿ID</th>
@@ -33,16 +34,16 @@
         <th>公開状況</th>
       </tr>
     </thead>
-<% @lists.each do |list| %>
-  <tr>
-    <td><%= list.id %></td>
+    <% @lists.each do |list| %>
+    <tr>
+      <td><%= list.id %></td>
     <td><u>
       <%= link_to list.title, admin_list_path(list.id) %>
     </td></u>
     <td><%= list.post_comments.count %></td>
     <td><%= list.draft_i18n %></td>
-  </tr>
-<% end %>
+    </tr>
+    <% end %>
   </table>
-
-<%= paginate @lists %>
+  <%= paginate @lists %>
+</div>

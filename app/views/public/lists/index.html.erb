@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container text-center">
   <h1>投稿一覧</h1>
   <%= form_tag({controller:"lists",action:"index"},method: :get)do %>
     <%= text_field_tag :search %>
@@ -7,7 +7,7 @@
     { prompt: '全て',}%>
     <%= submit_tag '検索する' %>
   <% end %>
-    
+
   <div class="album py-5">
     <div class="row">
       <%= render 'public/lists/index', lists: @lists %>
