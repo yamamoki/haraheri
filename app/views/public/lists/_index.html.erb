@@ -1,7 +1,7 @@
     <% lists.each do |list| %>
       <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
-         <img class="card-img-top"><%= image_tag list.get_image,:height => '500px'  %>
+         <img class="card-img-top"><%= image_tag list.get_image %>
           <div class="card-body">
           <h4><%= link_to list.title.truncate(10), list_path(list.id) %></h4>
           <p>投稿者：<%= list.user.name %></p>
