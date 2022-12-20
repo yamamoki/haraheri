@@ -46,7 +46,6 @@
         　<% else %>
         </nav>
         <nav class="my-2 my-md-0 mr-md-3">
-          <%= link_to "About", about_path, class: "p-2 text-dark" %>
           <%= link_to "管理人ログイン", new_admin_session_path %>
           <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
           <%= link_to "ログイン", new_user_session_path, class: "btn btn-info" %>
