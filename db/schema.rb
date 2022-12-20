@@ -61,15 +61,8 @@ ActiveRecord::Schema.define(version: 2022_12_15_070214) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "genres", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "lists", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "genre_id"
     t.string "title"
     t.text "material"
     t.text "body"
