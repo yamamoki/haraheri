@@ -53,7 +53,6 @@
             <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete %>
           <% end %></p>
         <% end %>
-
       <% if @post_comments.offset(3).any? %>
         <details>
           <summary>全てのコメントを表示</summary>
