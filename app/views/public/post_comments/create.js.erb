@@ -1,1 +1,2 @@
-$(".post_comments_<%= @list.id %>").html("<%= j (render 'public/post_comments/comment', list: @list, post_comment: @post_comment) %>");
+$(".comment_form").html("<%= j (render 'public/post_comments/index', list: @list, post_comment: @post_comment) %>");
+$("textarea").val("");
