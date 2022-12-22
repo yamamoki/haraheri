@@ -30,14 +30,7 @@
   </div>
 </div>
 <div class="container">
-  <% if user_signed_in? %>
-    <div id="favorites_<%= @list.id %>">
-    <%= render "public/favorites/favorites", list: @list %>
-    </div>
-</div>
-<div class="container">
-  <div class="row">
-    <% end %>
+<h4 class="fa-solid fa-bookmark">保存され数<%= @list.favorites.count %></h4><br>
       <p class="fa-solid fa-comment">&nbsp;<%= @list.post_comments.count %></p>
         <% @list.post_comments.first(3).each do |post_comment| %>
           <p><%= post_comment.user.name %>
@@ -62,4 +55,4 @@
         </details>
       <% end %>
     </div>
-  </div>
+
