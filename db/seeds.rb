@@ -23,14 +23,19 @@ tags = Tag.create!([
  ])
 
 list = List.create!(
-    user_id: users[0].id,
-    title: "公開",
-    material: "公開\r\n写真未選択",
-    body: "公開\r\n写真未選択\r\nテスト\r\nテスト\r\nテスト\r\nテスト\r\nテスト\r\nテスト\r\n火を\r\n包丁",
-    tag_ids: tags[0].id,
+    user_id: users[1].id,
+    title: "マグカップで茶碗蒸し",
+    material: "卵　１個\r\n麺つゆ又は白だし　大さじ１\r\n水　150ml",
+    body: "マグカップで卵をよく混ぜる
+麺つゆと水を入れて混ぜる
+ふんわりラップをして、500wで3分位
+そのまま少しおいて余熱で固める
+ネギやカニカマ等を入れても美味しいです。
+失敗しても卵のスープになります",
+    tag_ids: tags[1].id,
     draft: "release")
     list.image.attach(io:
-File.open(Rails.root.join("./app/assets/images/haraheri.png")), filename:"haraheri.png")
+File.open(Rails.root.join("./app/assets/images/test5.png")), filename:"test5.png")
 
 list = List.create!(
     user_id: users[2].id,
@@ -44,6 +49,30 @@ list = List.create!(
     list.image.attach(io:
 File.open(Rails.root.join("./app/assets/images/test1.jpg")), filename:"test1.jpg")
 
+list = List.create!(
+    user_id: users[0].id,
+    title: "レタスと豚肉のさっぱり蒸し",
+    material: "レタス　半玉\r\n豚の薄切り　５枚\r\n塩コショウ　適量\r\n酒　大さじ１\r\nポン酢　お好みで",
+    body: "耐熱皿に千切ったレタスを入れ、その上に豚肉を広げて乗せる。
+塩コショウと酒を豚肉にかかるようにふる。
+ラップをふんわりして、レンジで５〜６分で完成。
+ポン酢をかけてお食べください。",
+    tag_ids: tags[0].id,
+    draft: "release")
+    list.image.attach(io:
+File.open(Rails.root.join("./app/assets/images/test3.png")), filename:"test3.png")
+
+
+list = List.create!(
+    user_id: users[2].id,
+    title: "天かすのおにぎり",
+    material:"ご飯　１合\r\n天かす　大さじ３\r\n大葉　４枚\r\nめんつゆ　大さじ１\r\nごま油　大さじ１",
+    body: "大葉をみじん切りにする。
+材料を全部混ぜておにぎりにする。面倒ならおにぎりにせずに食べる。",
+    tag_ids: tags[0].id,
+    draft: "release")
+    list.image.attach(io:
+File.open(Rails.root.join("./app/assets/images/no_image.png")), filename:"no_image.png")
 
 
 list = List.create!(
@@ -61,3 +90,15 @@ list = List.create!(
     draft: "release")
     list.image.attach(io:
 File.open(Rails.root.join("./app/assets/images/test2.jpg")), filename:"test2.jpg")
+
+list = List.create!(
+    user_id: users[0].id,
+    title: "サーモン漬け",
+    material: "サーモン　150g\r\n味ぽん　大さじ1\r\n醤油　小さじ2\r\n水　大さじ２\r\nおろしニンニク　小さじ1/2",
+    body: "袋に全部入れて冷蔵庫に3時間以上漬ける。
+ご飯のお供にどう",
+    tag_ids: tags[0].id,
+    draft: "release")
+    list.image.attach(io:
+File.open(Rails.root.join("./app/assets/images/test4.png")), filename:"test4.png")
+
