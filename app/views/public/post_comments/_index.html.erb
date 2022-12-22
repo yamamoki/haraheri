@@ -1,26 +1,33 @@
-<%= list.post_comments.count %></p>
+<h4 class="fa-solid fa-comment">&nbsp;<%= list.post_comments.count %></h4>
 <% list.post_comments.first(3).each do |post_comment| %>
-  <p><%= post_comment.user.name %>
-  <%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
-  <p><%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
-  <% if post_comment.user == current_user %>
-    <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete, remote: true %>
-  <% end %></p>
+  <div class="border-bottom border-top">
+  <p>
+    <div class="fa-solid fa-comment">&nbsp;<%= post_comment.user.name %></div>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><br>
+    <%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
+    <% if post_comment.user == current_user %>
+      <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete, remote: true %>
+    <% end %>
+  </p>
+  </div>
 <% end %>
 <% if list.post_comments.offset(3).any? %>
   <details>
     <summary>全てのコメントを表示</summary>
-    <% list.post_comments.offset(3).each do |post_comment| %>
+  <% list.post_comments.offset(3).each do |post_comment| %>
+    <div class="border-bottom border-top">
       <p>
-        <%= post_comment.user.name %>
-        <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+        <div class="fa-solid fa-comment">&nbsp;
+        <%= post_comment.user.name %></div>
+        <%= post_comment.created_at.strftime('%Y/%m/%d') %><br>
+        <%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
+        <% if post_comment.user == current_user %>
+          <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete, remote: true %>
+        <% end %>
       </p>
-      <p>
-      <%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
-      <% if post_comment.user == current_user %>
-        <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete, remote: true %>
-      <% end %>
-      </p>
+    </div>
     <% end %>
   </details>
 <% end %>
+
+<br>
