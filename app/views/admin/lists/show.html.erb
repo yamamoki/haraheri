@@ -6,7 +6,7 @@
     <h4 class="fa-solid fa-tag"><%= tag.name %>&nbsp;</h4>
   <% end %>
   <p class="card-name">投稿者：
-  <%= link_to admin_user_path do %>
+  <%= link_to admin_user_path(@list.user.id) do %>
     <%= @list.user.name %>
   <% end %>
   <div class="row">
