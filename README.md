@@ -25,7 +25,7 @@
 ・料理メモの代わりに.
 
 ## 設計書
-![はらへり-ER図](images/haraheri-er.drawio.png)
+![はらへり-ER図](images/haraheri_er.drawio.png)
 
 ## 開発環境
 - OS：Linux(CentOS)
