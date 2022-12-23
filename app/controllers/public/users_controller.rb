@@ -23,12 +23,23 @@ class Public::UsersController < ApplicationController
 
   def withdrawal
     @user = current_user
-    @user.update_columns(is_deleted: true)
+    if @user.email == 'guestda@example.com'
+      reset_session
+      redirect_to :root
+      @user.update_columns(is_deleted: true)
     if @user.is_deleted == true
       sign_out current_user
     end
     redirect_to root_path
+    end
   end
+
+  def guest_check
+    if current_user == User.find(1)
+      redirect_to root_path,notice: "このページを見るには会員登録が必要です。"
+    end
+  end
+
 
   private
 
