@@ -16,7 +16,6 @@
   <header style="background-color:#9DDCDC;">
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
       <h5 class="my-0 mr-md-auto font-weight-normal "><%= link_to image_tag("haraheri.png", size: "300x100"), root_path, class: "header-button btn text-light " %></h5>
-      <% if user_signed_in? %>
         <nav class="my-2 my-md-0 mr-md-3">
           <%= form_tag({controller:"lists",action:"index"},method: :get)do %>
             <%= text_field_tag :search %>
@@ -25,20 +24,13 @@
             { prompt: '全て',}%>
             <%= submit_tag 'レシピ検索' %>
           <% end %>
+          <% if user_signed_in? %>
           <p></p>
           <%= link_to "投稿一覧", lists_path, class: "btn btn-success" %>
           <%= link_to "マイページ", users_path(current_user), class: "btn btn-info" %>
           <%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-danger", method: :delete %>
         </nav>
         <% elsif admin_signed_in? %>
-        <nav class="my-2 my-md-0 mr-md-3">
-            <%= form_tag({controller:"lists",action:"index"},method: :get)do %>
-            <%= text_field_tag :search %>
-            <%= select_tag :tag_id,
-            options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-            { prompt: '全て',}%>
-            <%= submit_tag 'レシピ検索' %>
-          <% end %>
           <p></p>
           <%= link_to "管理トップ", admin_root_path, class: "btn btn-secondary" %>
           <%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-danger", method: :delete %>
