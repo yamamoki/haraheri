@@ -6,7 +6,11 @@
     <div class="row" style="background-color: #fafad2 ">
       <h4 class="col-sm-4 col-xs-6"><%= link_to "保存済一覧", list_favorites_path(@user) %></h4>
       <h4 class="col-sm-4 col-xs-6"><%= link_to "新規投稿", new_list_path %></h4>
+      <% if @user.email == 'guest@example.com'%>
+      　<p>ゲストユーザーはユーザー情報の編集ができません。</p>
+      <% else %>
       <h4 class="col-sm-4 col-xs-6"><%= link_to "プロフィール編集", users_edit_path %></h4>
+      <% end %>
     </div>
   </div>
 
