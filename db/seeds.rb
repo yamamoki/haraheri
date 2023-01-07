@@ -19,7 +19,8 @@ tags = Tag.create!([
     {email: 'haru@test.com', name: 'はる', password: 'hhhhhh' },
     {email: 'natu@test.com', name: 'なつ', password: 'nnnnnn' },
     {email: 'aki@test.com', name: 'あき', password: 'aaaaaa' },
-    {email: 'huyu@test.com', name: 'ふゆ', password: 'hhhhhh' }
+    {email: 'huyu@test.com', name: 'ふゆ', password: 'hhhhhh' },
+    {email: 'test@test', name: 'test', password: 'tttttt' }
  ])
 
 list = List.create!(
@@ -50,7 +51,7 @@ list = List.create!(
 File.open(Rails.root.join("./app/assets/images/test1.jpg")), filename:"test1.jpg")
 
 list = List.create!(
-    user_id: users[0].id,
+    user_id: users[1].id,
     title: "レタスと豚肉のさっぱり蒸し",
     material: "レタス　半玉\r\n豚の薄切り　５枚\r\n塩コショウ　適量\r\n酒　大さじ１\r\nポン酢　お好みで",
     body: "耐熱皿に千切ったレタスを入れ、その上に豚肉を広げて乗せる。
@@ -101,4 +102,5 @@ list = List.create!(
     draft: "release")
     list.image.attach(io:
 File.open(Rails.root.join("./app/assets/images/test4.png")), filename:"test4.png")
+
 
