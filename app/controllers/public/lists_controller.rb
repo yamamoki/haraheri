@@ -1,4 +1,6 @@
 class Public::ListsController < ApplicationController
+  before_action :is_matching_login_user, only: [:edit, :update]
+
   def index
     if params[:search].blank? && params[:tag_id].blank?
       @lists= List.where(draft: 'release').page(params[:page]).order('id DESC').per(6)
@@ -57,4 +59,10 @@ class Public::ListsController < ApplicationController
     params.require(:list).permit(:title, :material, :body, :image, :draft, tag_ids: [])
   end
 
+  def is_matching_login_user
+    list = List.find(params[:id]).user.id.to_i
+    unless list == current_user.id
+      redirect_to list_path
+    end
+  end
 end
