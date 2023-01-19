@@ -21,7 +21,7 @@
 
     <h4>作り方</h4>
     <%= f.text_area :body, class: 'form-control',size: "10x10" %>
-  </br>
+  <br>
   <div class="row">
     <div class="col-sm-6 col-xs-6">
       <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
@@ -45,4 +45,4 @@
     </h4>
   </div>
 </div>
-</br>
+<br>
