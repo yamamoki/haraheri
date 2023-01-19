@@ -45,14 +45,14 @@
       <% end %>
     </div>
   </header>
-
+  <body style="background-color:#FFF4E0;">
+    
   <% flash.each do |key, value| %>
       <% key = "info" if key == "notice" %>
       <% key = "danger"  if key == "alert" %>
       <%= content_tag :div, value, class: "alert alert-#{key}" %>
   <% end %>
 
-  <body style="background-color:#FFF4E0;">
     <%= yield %>
   </body>
 
