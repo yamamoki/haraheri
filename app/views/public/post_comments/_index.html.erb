@@ -6,7 +6,7 @@
     <%= post_comment.created_at.strftime('%Y/%m/%d') %><br>
     <%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
     <% if post_comment.user == current_user  %>
-      <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete, remote: true %>
+      <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete, remote: true, data: {confirm: "本当に削除しますか？"} %>
     <% end %>
   </p>
   </div>
@@ -22,7 +22,7 @@
         <%= post_comment.created_at.strftime('%Y/%m/%d') %><br>
         <%=safe_join(post_comment.comment.split("\n"),tag(:br))%>
         <% if post_comment.user == current_user %>
-          <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete, remote: true %>
+          <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete, remote: true, data: {confirm: "本当に削除しますか？"} %>
         <% end %>
       </p>
     </div>
