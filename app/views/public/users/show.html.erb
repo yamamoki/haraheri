@@ -26,7 +26,7 @@
           <% list.tags.each do |tag| %>
           <p class="fa-solid fa-tag"><%= tag.name %>&nbsp;</p>
           <% end %>
-          </br>
+          <br>
           <p class="fa-solid fa-comment">&nbsp;<%= list.post_comments.count %></p>
           <p>保存数<%= list.favorites.count %></p>
           <p>現在、<%= list.draft_i18n %>中です。</p>

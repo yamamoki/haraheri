@@ -14,4 +14,7 @@ ja:
           release: "公開"
           draft: "下書き"
 
+   time:
+    formats:
+      default: "%Y/%m/%d %H:%M"
 
