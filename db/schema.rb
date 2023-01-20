@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 2022_12_15_070214) do
     t.text "material"
     t.text "body"
     t.integer "draft"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "post_comments", force: :cascade do |t|

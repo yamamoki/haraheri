@@ -7,7 +7,7 @@
       <h4 class="col-sm-4 col-xs-6"><%= link_to "保存済一覧", list_favorites_path(@user) %></h4>
       <h4 class="col-sm-4 col-xs-6"><%= link_to "新規投稿", new_list_path %></h4>
       <% if @user.email == 'guest@example.com'%>
-      　<p>ゲストユーザーはユーザー情報の編集ができません。</p>
+      <p>ゲストユーザーはユーザー情報の編集ができません。</p>
       <% else %>
       <h4 class="col-sm-4 col-xs-6"><%= link_to "プロフィール編集", users_edit_path %></h4>
       <% end %>
@@ -32,7 +32,7 @@
           <p>現在、<%= list.draft_i18n %>中です。</p>
           <p class="text-right">
             <%= link_to "編集", edit_list_path(list) %>
-          　<%= link_to "削除", list_path(list), method: :delete %>
+            <%= link_to "削除", list_path(list), method: :delete, data: {confirm: "本当に削除しますか？"} %>
           </p>
           </div>
         </div>

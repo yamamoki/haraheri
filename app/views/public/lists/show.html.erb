@@ -6,7 +6,8 @@
     <h4 class="fa-solid fa-tag"><%= tag.name %>&nbsp;</h4>
   <% end %>
   <p class="card-name">
-    投稿者：<%= @list.user.name %>
+    投稿者：<%= @list.user.name %><br>
+    投稿日：<%= l @list.created_at %>
   </p>
   <div class="row">
       <div class="col-lg-5">
